@@ -1140,7 +1140,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementForce: 4
   maxSpeed: 5
-  forceDirection: {x: 0, y: 0, z: 0}
   playerCamera: {fileID: 7782106598672146687}
 --- !u!114 &5652313289760649264
 MonoBehaviour:
@@ -1169,7 +1168,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Movement
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 7782106598672146687}
 --- !u!114 &2448874005650195587
@@ -1205,7 +1204,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -8985441501920503780, guid: 39a24f57c2fd9ef4c9bda1f756e11a29, type: 3}
+    m_Reference: {fileID: 103154078710344880, guid: 39a24f57c2fd9ef4c9bda1f756e11a29, type: 3}
   m_PlayerPrefab: {fileID: 7258678355714990712}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 0
