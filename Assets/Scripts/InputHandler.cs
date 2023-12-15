@@ -1,60 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
-public class InputHandler : MonoBehaviour
+public class InputHandler : MonoBehaviour, AxisState.IInputAxisProvider
 {
-    private PlayerInput input;
+    [HideInInspector] public InputAction horizontal;
+    [HideInInspector] public InputAction vertical;
 
-    [SerializeField] private InputActionReference MoveReference;
-    [SerializeField] private InputActionReference LookReference;
 
-    void Awake()
+    public float GetAxisValue(int axis)
     {
-        input = GetComponent<PlayerInput>();
-
-       
-        input.actions[MoveReference.action.name].performed += OnMove;
-        input.actions[LookReference.action.name].performed += OnLook;
-
-       
-        InputSystem.onDeviceChange += DeviceCheck;
-    }
-
-    void OnDestroy()
-    {
-        
-        input.actions[MoveReference.action.name].performed -= OnMove;
-        input.actions[LookReference.action.name].performed -= OnLook;
-        InputSystem.onDeviceChange -= DeviceCheck;
-    }
-
-    private void DeviceCheck(InputDevice device, InputDeviceChange change)
-    {
-        
-        if (device is Gamepad)
+        switch (axis)
         {
-            if (change == InputDeviceChange.Added)
-            {
-                Debug.Log("Gamepad verbonden!");
-                
-            }
-            else if (change == InputDeviceChange.Removed)
-            {
-                Debug.Log("Gamepad losgekoppeld!");
-                
-            }
+            case 0: return horizontal.ReadValue<Vector2>().x;
+            case 1: return horizontal.ReadValue<Vector2>().y;
+            case 2: return vertical.ReadValue<float>();
         }
-    }
 
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        Debug.Log($"OnMove ({context.control}); {context.ReadValue<Vector2>()}");
-    }
-
-    private void OnLook(InputAction.CallbackContext context)
-    {
-        Debug.Log($"Look ({context.control}); {context.ReadValue<Vector2>()}");
+        return 0;
     }
 }

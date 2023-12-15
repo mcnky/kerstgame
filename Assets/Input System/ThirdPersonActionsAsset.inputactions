@@ -1,8 +1,8 @@
 {
-    "name": "Player",
+    "name": "ThirdPersonActionsAsset",
     "maps": [
         {
-            "name": "Movement",
+            "name": "Player",
             "id": "fd76909b-f2d5-4ccb-be90-c3acd3fbed5c",
             "actions": [
                 {
