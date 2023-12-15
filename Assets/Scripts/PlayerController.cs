@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         playerAsset = new Player();
+        InputSystem.onDeviceChange += DeviceCheck;
     }
 
     private void OnEnable()
@@ -57,8 +60,31 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 GetCameraRight(Camera playerCamera)
     {
-        Vector3 right = playerCamera.transform.forward;
+        Vector3 right = playerCamera.transform.right; 
         right.y = 0;
         return right.normalized;
     }
+    void OnDestroy()
+    {
+        InputSystem.onDeviceChange -= DeviceCheck;
+    }
+
+    private void DeviceCheck(InputDevice device, InputDeviceChange change)
+    {
+
+        if (device is Gamepad)
+        {
+            if (change == InputDeviceChange.Added)
+            {
+                Debug.Log("Gamepad verbonden!");
+
+            }
+            else if (change == InputDeviceChange.Removed)
+            {
+                Debug.Log("Gamepad losgekoppeld!");
+
+            }
+        }
+    }
+
 }
