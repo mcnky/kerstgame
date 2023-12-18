@@ -1002,7 +1002,6 @@ GameObject:
   - component: {fileID: 8259079789056217028}
   - component: {fileID: 1871004154229735587}
   - component: {fileID: 5652313289760649264}
-  - component: {fileID: 2448874005650195587}
   m_Layer: 0
   m_Name: SantaSleigh_01
   m_TagString: Untagged
@@ -1171,50 +1170,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 7782106598672146687}
---- !u!114 &2448874005650195587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7258678355714990712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_NotificationBehavior: 3
-  m_MaxPlayerCount: -1
-  m_AllowJoining: 1
-  m_JoinBehavior: 1
-  m_PlayerJoinedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_PlayerLeftEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_JoinAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Join
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 05633ca4-9350-485d-8e07-c1d60a9439f4
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 103154078710344880, guid: 39a24f57c2fd9ef4c9bda1f756e11a29, type: 3}
-  m_PlayerPrefab: {fileID: 7258678355714990712}
-  m_SplitScreen: 1
-  m_MaintainAspectRatioInSplitScreen: 0
-  m_FixedNumberOfSplitScreens: -1
-  m_SplitScreenRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
 --- !u!1001 &1639789417631314267
 PrefabInstance:
   m_ObjectHideFlags: 0
