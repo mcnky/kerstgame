@@ -7,9 +7,9 @@ using UnityEngine.InputSystem;
 public class ThirdPersonController : MonoBehaviour
 {
     //input fields
-    //private ThirdPersonActionsAsset playerActionsAsset;
     private InputActionAsset inputAsset;
     private InputActionMap player;
+    private InputAction shootAction;
     private InputAction move;
 
     //movement fields
@@ -18,33 +18,43 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private float maxSpeed = 5f;
     private Vector3 forceDirection = Vector3.zero;
 
-    [SerializeField] private Camera playerCamera;
+    //shoot
+    [SerializeField] private GameObject projectilePrefab; 
+    [SerializeField] private float projectileSpeed = 10f;
+    [SerializeField] private Transform shootPoint;
 
+
+    [SerializeField] private Camera playerCamera;
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
 
-        //playerActionsAsset = new ThirdPersonActionsAsset();
         inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("Player");
+
+        if (player != null)
+        {
+            shootAction = player.FindAction("Shoot");
+            shootAction.performed += ctx => Shoot();
+        }
+        else
+        {
+            Debug.LogError("Player action map not found!");
+        }
     }
+
 
     private void OnEnable()
     {
-        //playerActionsAsset.Player.Jump.started += DoJump;
-        //playerActionsAsset.Player.Attack.started += DoAttack;
-        //move = playerActionsAsset.Player.Move;
-        //playerActionsAsset.Player.Enable();
         move = player.FindAction("Move");
         player.Enable();
+        shootAction.Enable();
     }
 
     private void OnDisable()
     {
-        //playerActionsAsset.Player.Jump.started -= DoJump;
-        //playerActionsAsset.Player.Attack.started -= DoAttack;
-        //playerActionsAsset.Player.Disable();
         player.Disable();
+        shootAction.Disable();
     }
 
     private void FixedUpdate()
@@ -90,4 +100,24 @@ public class ThirdPersonController : MonoBehaviour
         right.y = 0;
         return right.normalized;
     }
+
+    private void Shoot()
+    {
+        Debug.Log("Shoot method called."); // Controleer of deze methode wordt aangeroepen wanneer je probeert te schieten.
+
+        // Maak een nieuw projectiel aan op de positie van de speler met de juiste rotatie
+        GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, transform.rotation);
+
+        Debug.Log("Projectile instantiated: " + projectile); // Controleer of het projectiel is geïnstantieerd.
+
+        // Voeg snelheid toe aan het projectiel (bijvoorbeeld door een Rigidbody-component te gebruiken)
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+        if (projectileRb != null)
+        {
+            projectileRb.velocity = transform.forward * projectileSpeed;
+            Debug.Log("Projectile speed: " + projectileRb.velocity.magnitude); // Controleer of de snelheid is ingesteld.
+        }
+    }
+
+
 }
