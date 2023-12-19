@@ -25,6 +25,7 @@ public class ThirdPersonController : MonoBehaviour
 
 
     [SerializeField] private Camera playerCamera;
+
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -103,20 +104,22 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Shoot()
     {
-        Debug.Log("Shoot method called."); // Controleer of deze methode wordt aangeroepen wanneer je probeert te schieten.
+        Debug.Log("Shoot method called."); 
 
-        // Maak een nieuw projectiel aan op de positie van de speler met de juiste rotatie
+        
         GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, transform.rotation);
 
-        Debug.Log("Projectile instantiated: " + projectile); // Controleer of het projectiel is geïnstantieerd.
+        Debug.Log("Projectile instantiated: " + projectile); 
 
-        // Voeg snelheid toe aan het projectiel (bijvoorbeeld door een Rigidbody-component te gebruiken)
+        
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
         if (projectileRb != null)
         {
             projectileRb.velocity = transform.forward * projectileSpeed;
-            Debug.Log("Projectile speed: " + projectileRb.velocity.magnitude); // Controleer of de snelheid is ingesteld.
+            Debug.Log("Projectile speed: " + projectileRb.velocity.magnitude); 
         }
+       
+        Destroy(projectile, 5f);
     }
 
 
